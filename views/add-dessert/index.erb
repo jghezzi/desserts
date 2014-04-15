@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>Add A Dessert</title>
+	<link rel="stylesheet" type="text/css" href="application.css">
+</head>
+<body>
+	<h1>
+		Favorite Dessert List
+	</h1>
+	<p>Input a dessert to add and click 'Submit'</p>
+
+	<ul>
+		<% @desserts.each do |desserts| %>
+		<li><%= desserts %></li>
+		<% end %>
+	</ul>
+
+	<form action="/add-dessert" method="post">
+		<input type="text" id="description" name="description">
+		<input type="submit">
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>My Favorite Desserts</title>
+	<link rel="stylesheet" type="text/css" href="application.css">
+</head>
+<body>
+	<h1>
+		Favorite Dessert List
+	</h1>
+
+	<ul>
+		<% @desserts.each do |desserts| %>
+		<li><%= desserts %></li>
+		<% end %>
+	</ul>
+	<form action="/desserts" method="post">
+		<input type="button" value="Add" onclick="location.href='/add-dessert'">
+
+	<form action="/desserts" method="post">
+		<input type="button" value="Delete" onclick="location.href='/delete-dessert'">
+
+	</form>
+</body>
+</html>

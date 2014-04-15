@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>Delete A Dessert</title>
+	<link rel="stylesheet" type="text/css" href="application.css">
+</head>
+<body>
+	<h1>
+		Favorite Dessert List
+	</h1>
+	<p>Input a dessert to delete and click 'Submit'</p>
+
+	<ul>
+		<% @desserts.each do |desserts| %>
+		<li><%= desserts %></li>
+		<% end %>
+	</ul>
+
+	<form action="/delete-dessert" method="post">
+		<input type="text" id="to_delete" name="to_delete">
+		<input type="submit">
+
+</body>
+</html>
