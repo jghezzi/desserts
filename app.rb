@@ -1,71 +1,76 @@
 require 'sinatra'
+require 'sinatra/activerecord'
+
+set :database, "sqlite:///desserts_app.db"
 
 get "/Error" do
-	"Error"
+	"Ham is not a dessert!"
 end
 
 get "/not-in-list" do
 	"That's not in the list!"
 end
 
+get "/desserts/:id" do
+	@dessert = Dessert.find(params[:id])
+	erb :"desserts/show"
+end
+
 get "/desserts" do
-	"Desserts"
-	@desserts = Dessert.desserts
-	erb :"desserts/index"
+	@desserts = Dessert.all
+	# Dessert.all
+	# @dessert = Dessert.find(params[:id])
+ 	erb :"desserts/index"
 end
 
 get "/add-dessert" do
-	"Input a dessert to add and click 'Submit'"
-	@desserts = Dessert.desserts
+	@new_dessert = Dessert.new
+	#@desserts = Dessert.find(params[:id])
 	erb :"add-dessert/index"
 end
 
 get "/delete-dessert" do
-	"Input a dessert to delete and click 'Submit'"
-	@desserts = Dessert.desserts
+	@desserts = Dessert.all
+	@dessert_to_delete = Dessert.find(params[:id])
 	erb :"delete-dessert/index"
 end
 
 post "/add-dessert" do
-	text = params[:description]
-	if Dessert.add_to_desserts(text)
-	 redirect "/desserts"
+	@dessert = Dessert.new(params[:dessert]) #calls new instance in db and fills with 'dessert[description]' from erb'
+	@dessert.save
+	redirect "/desserts"
+end
+
+delete "/desserts/:id" do
+	dessert = Dessert.find(params[:id])
+	if dessert.delete 
+		redirect "/desserts"
 	else
-		redirect "/Error"
+		redirect "/desserts/:id"
 	end
 end
 
 post "/delete-dessert" do
-	kill = params[:to_delete]
-	if Dessert.delete_desserts(kill)
-		redirect "/desserts"
-	else
-		redirect "/not-in-list"
-	end
+	@desserts = Dessert.all
+
 end
 
 
-class Dessert
-	@@desserts = ["Ice Cream", "Cake"]
+class Dessert < ActiveRecord::Base
 
-	def initialize
-	end
-
-	def self.desserts
-		@@desserts
-	end
 
 	def self.add_to_desserts(dessert)
 		if dessert == "ham"
 			return false
-		else
-			@@desserts << dessert
 		end
+		# else
+		# 	@@dessert << dessert
+		# end
 	end
 
 	def self.delete_desserts(dessert)
-		if @@desserts.include? dessert
-			@@desserts.delete(dessert)
+		if @@dessert.include? dessert
+			@@dessert.delete(dessert)
 		else
 			return false
 		end

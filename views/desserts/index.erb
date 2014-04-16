@@ -9,15 +9,12 @@
 	</h1>
 
 	<ul>
-		<% @desserts.each do |desserts| %>
-		<li><%= desserts %></li>
+		<% @desserts.each do |dessert| %>
+		<li><a href="/desserts/<%= dessert.id %>"> <%= dessert.description %></a></li>
 		<% end %>
 	</ul>
 	<form action="/desserts" method="post">
 		<input type="button" value="Add" onclick="location.href='/add-dessert'">
-
-	<form action="/desserts" method="post">
-		<input type="button" value="Delete" onclick="location.href='/delete-dessert'">
 
 	</form>
 </body>

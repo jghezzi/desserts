@@ -11,13 +11,15 @@
 
 	<ul>
 		<% @desserts.each do |desserts| %>
-		<li><%= desserts %></li>
+		<li><%= desserts.description %></li>
 		<% end %>
 	</ul>
 
-	<form action="/delete-dessert" method="post">
-		<input type="text" id="to_delete" name="to_delete">
+	<form action="/delete-dessert<%= @dessert_to_delete.id %>" method="post">
+		<input type="hidden" name:"_method" value="put" />
+		<input type="text" id="dessert_description" name="dessert[description]" value="<%= @desserts.description %>"
 		<input type="submit">
+	</form>
 
 </body>
 </html>

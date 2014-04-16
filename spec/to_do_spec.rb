@@ -28,4 +28,15 @@ describe Dessert do
 		dessert = "Not In List"
 		Dessert.delete_desserts(dessert).should be_false
 	end
+
+	it 'should deliver an error if ham is added' do
+		first_count = Dessert.desserts.count
+		dessert = "ham"
+		Dessert.add_to_desserts(dessert)
+		second_count = Dessert.desserts.count
+
+		second_count.should == first_count
+	end
+
 end
+
