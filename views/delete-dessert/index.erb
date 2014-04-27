@@ -15,11 +15,10 @@
 		<% end %>
 	</ul>
 
-	<form action="/delete-dessert<%= @dessert_to_delete.id %>" method="post">
-		<input type="hidden" name:"_method" value="put" />
-		<input type="text" id="dessert_description" name="dessert[description]" value="<%= @desserts.description %>"
-		<input type="submit">
-	</form>
+<form action="/desserts/<%= @dessert.id %>" method="post">
+	<input type="hidden" name="_method" value="delete" />
+	<input type="submit" value="Delete" />
+</form>
 
 </body>
 </html>

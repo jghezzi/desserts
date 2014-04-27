@@ -7,6 +7,8 @@ gem 'debugger'
 gem 'sqlite3'
 gem 'activerecord', "4.0.4"
 gem 'sinatra-activerecord'
+gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
+
 
 group :development do
 	gem 'shotgun'

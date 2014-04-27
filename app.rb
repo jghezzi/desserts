@@ -55,7 +55,6 @@ post "/delete-dessert" do
 
 end
 
-
 class Dessert < ActiveRecord::Base
 
 
@@ -63,9 +62,7 @@ class Dessert < ActiveRecord::Base
 		if dessert == "ham"
 			return false
 		end
-		# else
-		# 	@@dessert << dessert
-		# end
+
 	end
 
 	def self.delete_desserts(dessert)

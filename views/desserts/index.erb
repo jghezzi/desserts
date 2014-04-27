@@ -7,7 +7,9 @@
 	<h1>
 		Favorite Dessert List
 	</h1>
-
+	<h4>
+		Click on a dessert to delete
+	</h4>
 	<ul>
 		<% @desserts.each do |dessert| %>
 		<li><a href="/desserts/<%= dessert.id %>"> <%= dessert.description %></a></li>
